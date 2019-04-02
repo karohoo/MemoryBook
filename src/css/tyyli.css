@@ -1,0 +1,12 @@
+.lomakeTyyli {
+    width: 6em;
+    display: block;
+    float: left;
+    font-weight: 500;
+}
+
+@import url('https://fonts.googleapis.com/css?family=Shadows+Into+Light');
+
+@import url('https://fonts.googleapis.com/css?family=Cantarell|Fredericka+the+Great|Neucha|Shadows+Into+Light');
+
+@import url('https://fonts.googleapis.com/css?family=Cantarell|Fredericka+the+Great|Major+Mono+Display|Neucha|Shadows+Into+Light');
