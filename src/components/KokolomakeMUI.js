@@ -7,7 +7,12 @@ import { withStyles } from "@material-ui/core/styles";
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
+import Typography from "@material-ui/core/Typography";
 import Paper from '@material-ui/core/Paper';
+import axios from 'axios';
+import {Url} from '../conf';
+
+const url = Url();
 
 class KokolomakeMUI extends Component {
   constructor(props) {
@@ -20,7 +25,19 @@ class KokolomakeMUI extends Component {
   }
 
   lisaa = (e) => {
-    e.preventDefault();
+    const formData = new FormData();
+    formData.append('ika', this.state.ika);
+    formData.append('paino', this.state.paino);
+    formData.append('pituus', this.state.pituus);
+    axios.post(url + '/koko/add/', formData)
+        .then(response => {
+            if (response.status === 200) {
+                this.setState({viesti: 'Lisättiin'});
+                this.tyhjenna();
+            } else {
+                this.setState({ viesti: 'Lisäys ei onnistunut'});
+            }
+        })
   }
 
   tyhjenna = (e) => {
@@ -60,9 +77,12 @@ class KokolomakeMUI extends Component {
         <TextField label='Pituus' name='pituus' value={ this.state.pituus }
                onChange={ this.muuta } margin='normal' required
                className={ classes.field } fullWidth />
+        <div className={ classes.buttonContainer }>
         <Button onClick={this.lisaa} variant='contained' color='primary' className={ classes.button }><Create /> Lisää</Button>
-        <Button onClick={this.tyhjenna} variant='contained'  color='secondary' className={ classes.button }><Clear /> Tyhjennä</Button>
+        <Button onClick={this.tyhjenna} className={ classes.button }><Clear /> Tyhjennä</Button>
+        </div>
       </form>
+        <Typography variant='body1' style={{fontWeight: 'bold', marginTop: 10}}>{this.state.viesti}</Typography>
         </Paper>
     );
   }

@@ -8,9 +8,10 @@ import {BrowserRouter, Route, Switch} from "react-router-dom";
 import KokolistaMUI from "./components/KokolistaMUI";
 import KokolomakeMUI from "./components/KokolomakeMUI";
 import SanontalomakeMUI from "./components/SanontalomakeMUI";
-import SanontalistaMUI from "./components/SanontalistaMUI";
 import HaeMuistot from "./components/HaeMuistot";
 import Kotisivu from "./components/Kotisivu";
+import HaeKuvat from "./components/HaeKuvat";
+import KuvalomakeMUI from "./components/KuvalomakeMUI";
 import imgUrl from "./max.jpg";
 
 const styles = {
@@ -20,7 +21,7 @@ const styles = {
         height: "770px"
     }
 }
-
+{/*
 const san = [
     {
         ika: "4 vuotta",
@@ -41,7 +42,7 @@ const san = [
         sanonta: "Meinasi lentää sydän ulos, sitten ei olisi ollut enää rakkautta"
     }
 ];
-
+*/}
 const theme = createMuiTheme(
 {
   palette: {
@@ -74,6 +75,8 @@ class HarkkaApp extends Component {
                         <Route exact path="/etusivu" component={Kotisivu} />
                         <Route path="/lisaasanonta"             component={SanontalomakeMUI} />
                         <Route path="/listaasanonnat" component={HaeMuistot} />
+                        <Route path="/listaakuvat" component={HaeKuvat} />
+                        <Route path="/lisaakuva" component={KuvalomakeMUI} />
                         <Route path="/lisaakoko" component={KokolomakeMUI} />
                         <Route path="/kokotaulukko" component={KokolistaMUI} />
                     </Switch>

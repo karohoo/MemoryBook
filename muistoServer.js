@@ -81,6 +81,57 @@ app.get('/muisto/delete/:id', function (req, res) {
     })
 })
 
+app.get('/kuva/all', function (req, res) {
+  db.all('SELECT * FROM kuva', function(error, results) {
+    if (error) throw error;
+    return res.status(200).json(results);
+  }) // db.all
+})
+
+app.get('/kuva/one/:id', function (req, res) {
+  let id = req.params.id;
+
+  db.get('SELECT * FROM kuva where id=?', [id], function (error, result) {
+      if (error) throw error;
+
+      if (typeof(result) == 'undefined')  {
+        return res.status(200).send({});
+      }
+
+      return res.status(200).json(result);
+  })  // db.get
+})
+
+app.post('/kuva/add', upload.single('kuva'), function (req, res) {
+    let tap = req.body;
+    let kuva = null;
+    
+    if(req.file) {
+        kuva = req.file.originalname
+    }
+  db.run('INSERT INTO kuva (kuva, teksti, featured) VALUES (?, ?, ?)',
+    [kuva, tap.teksti, tap.featured], function (error, result, fields) {
+        if (error) throw error;
+
+        return res.status(200).json({count: 1});
+  })
+
+})
+
+app.get('/kuva/delete/:id', function (req, res) {
+    let id = req.params.id;
+
+    db.run('DELETE FROM kuva WHERE id = ?', [id], function (error, result) {
+      if (error) throw error;
+
+      if (this.changes === 0) {
+        return res.status(200).json({count: 0});
+      }
+
+      return res.status(200).json({count: 1});
+    })
+})
+
 app.get('/download/:nimi', function(req, res){
   var file = './uploads/' + req.params.nimi;
   res.download(file);

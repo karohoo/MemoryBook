@@ -11,6 +11,24 @@ db.serialize(function() {
 		}
 		console.log("Taulu tehtiin");
 	});
+    
+    let sql2 = "CREATE TABLE kuva (" + "id integer PRIMARY KEY NOT NULL, " + "kuva text, " + "teksti text NOT NULL, " + "featured text NOT NULL)";
+
+	db.run(sql2, function(err) {
+		if (err) {
+		  return console.log(err.message);
+		}
+		console.log("Taulu tehtiin");
+	});
+    
+    sql2 = "INSERT INTO `kuva` (`id`, `kuva`, `teksti`, `featured`) "+
+	" VALUES (1, 'null', 'Menossa nukkumaan', 'true')";
+	db.run(sql2, function(err) {
+		if (err) {
+		  return console.log(err.message);
+		}
+		console.log("Rivi lisättiin");
+	});
 
 	sql = "INSERT INTO `muisto` (`id`, `ika`, `paivamaara`, `tilanne`, `sanonta`) "+
 	" VALUES (1, '4 vuotta', '2019-02-21', 'Menossa nukkumaan', 'Syökö siat sieniä? Kärpäset syö ainakin kärpässieniä.')";
@@ -44,6 +62,13 @@ db.serialize(function() {
 		  return console.log(err.message);
 		}
 		console.log(row.id + ", " + row.ika);
+	});
+    
+    db.each("SELECT id, teksti FROM kuva", function(err, row) {
+		if (err) {
+		  return console.log(err.message);
+		}
+		console.log(row.id + ", " + row.teksti);
 	});
 
 	db.close();

@@ -5,7 +5,7 @@ import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-import {Home, Create, List, Menu as MenuIcon, ShowChart} from '@material-ui/icons';
+import {Home, Create, List, Menu as MenuIcon, Camera, ShowChart} from '@material-ui/icons';
 import ListItemText from '@material-ui/core/ListItemText';
 import { Link } from 'react-router-dom';
 
@@ -42,6 +42,12 @@ class MenuMUI extends React.Component {
         </MenuItem>
         <MenuItem onClick={this.handleClose} component={Link} to='/listaasanonnat' ><List />
             <ListItemText inset primary="Sanonnat" />
+        </MenuItem>
+        <MenuItem onClick={this.handleClose} component={Link} to='/lisaakuva'><Create />
+            <ListItemText inset primary="Lisää kuva" />
+        </MenuItem>
+        <MenuItem onClick={this.handleClose} component={Link} to='/listaakuvat' ><Camera />
+            <ListItemText inset primary="Kuvagalleria" />
         </MenuItem>
         <MenuItem onClick={this.handleClose} component={Link} to='/lisaakoko'><Create />
         <ListItemText inset primary="Kokomerkintä" />

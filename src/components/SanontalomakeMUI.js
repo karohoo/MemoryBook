@@ -76,7 +76,7 @@ class SanontalomakeMUI extends Component {
               onChange={ this.muuta } margin='normal' multiline rows="3" required
               className={ classes.field } fullWidth />
         <div className={ classes.buttonContainer }>
-            <Button onClick={this.lisaa} variant='contained' className={ classes.button }><Create /> Lisää</Button>
+            <Button onClick={this.lisaa} variant='contained' color='primary' className={ classes.button }><Create /> Lisää</Button>
             <Button onClick={this.tyhjenna} className={ classes.button }><Clear /> Tyhjennä</Button>
         </div>
       </form>
