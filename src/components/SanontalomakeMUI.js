@@ -4,6 +4,16 @@ import Button from '@material-ui/core/Button';
 import { Create, Clear } from '@material-ui/icons';
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
+import Typography from "@material-ui/core/Typography";
+
+import {MuiPickersUtilsProvider, DatePicker } from 'material-ui-pickers';
+import DateFnsUtils from 'date-fns';
+import fiLocale from 'date-fns/locale/fi';
+import axios from 'axios';
+import {Url} from '../conf';
+
+const url = Url();
+
 
 class SanontalomakeMUI extends Component {
   constructor(props) {
@@ -16,11 +26,23 @@ class SanontalomakeMUI extends Component {
   }
 
   lisaa = (e) => {
-    e.preventDefault();
+    const formData = new FormData();
+    formData.append('ika', this.state.ika);
+    formData.append('paivamaara', this.state.paivamaara);
+    formData.append('tilanne', this.state.tilanne);
+    formData.append('sanonta', this.state.sanonta);
+    axios.post(url + '/muisto/add/', formData)
+        .then(response => {
+            if (response.status === 200) {
+                this.setState({viesti: 'Tiedot lisättiin'});
+                this.tyhjenna();
+            } else {
+                this.setState({ viesti: 'Tietojen lisäys epäonnistui'});
+            }
+        })
   }
 
   tyhjenna = (e) => {
-    e.preventDefault();
     this.setState( { ika: "", paivamaara: "", tilanne: "", sanonta: ""  } );
   }
 
@@ -32,18 +54,33 @@ class SanontalomakeMUI extends Component {
         <TextField label='Ikä' name='ika' value={ this.state.ika }
                onChange={ this.muuta } margin='normal' required
                className={ classes.field } fullWidth />
+         
         <TextField label='Päivämäärä' name='paivamaara' value={ this.state.paivamaara }
-               onChange={ this.muuta }  margin='normal' required
+               onChange={ this.muuta } margin='normal' required
                className={ classes.field } fullWidth />
+               
+        {/*
+        <MuiPickersUtilsProvider utils={DateFnsUtils} locale={fiLocale}>
+             <DatePicker label='Päivämäärä' name='paivamaara' keyboard
+                        fullWidth required
+                        cancelLabel='Peruuta'
+                        value={this.state.paivamaara}
+                        onChange={this.muutaPaivamaara}
+                        format='dd.MM.yyyy' />
+          </MuiPickersUtilsProvider>
+          */}
         <TextField label='Tilanne' name='tilanne' value={ this.state.tilanne }
                onChange={ this.muuta } margin='normal' multiline rows="3"
                className={ classes.field } fullWidth />
         <TextField label='Sanonta' name='sanonta' value={ this.state.sanonta }
               onChange={ this.muuta } margin='normal' multiline rows="3" required
               className={ classes.field } fullWidth />
-        <Button onClick={this.lisaa} variant='contained' color='primary' className={ classes.button }><Create /> Lisää</Button>
-        <Button onClick={this.tyhjenna} variant='contained'  color='secondary' className={ classes.button }><Clear /> Tyhjennä</Button>
+        <div className={ classes.buttonContainer }>
+            <Button onClick={this.lisaa} variant='contained' className={ classes.button }><Create /> Lisää</Button>
+            <Button onClick={this.tyhjenna} className={ classes.button }><Clear /> Tyhjennä</Button>
+        </div>
       </form>
+        <Typography variant='body1' style={{fontWeight: 'bold', marginTop: 10}}>{this.state.viesti}</Typography>
         </Paper>
     );
   }

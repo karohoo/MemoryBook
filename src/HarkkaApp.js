@@ -9,13 +9,15 @@ import KokolistaMUI from "./components/KokolistaMUI";
 import KokolomakeMUI from "./components/KokolomakeMUI";
 import SanontalomakeMUI from "./components/SanontalomakeMUI";
 import SanontalistaMUI from "./components/SanontalistaMUI";
+import HaeMuistot from "./components/HaeMuistot";
+import Kotisivu from "./components/Kotisivu";
 import imgUrl from "./max.jpg";
 
 const styles = {
     paperContainer: {
         backgroundImage: "url(" + imgUrl + ")",
         backgroundSize: "cover",
-        height: "800px"
+        height: "770px"
     }
 }
 
@@ -68,11 +70,11 @@ class HarkkaApp extends Component {
                 }
                     <MenuMUI/>
                     <Switch>
-                        <Route exact path="/" render= {(props) => <SanontalistaMUI{...props} sanonnat={san}/>} />
-                        <Route exact path="/etusivu" render= {(props) => <SanontalistaMUI{...props} sanonnat={san}/>} />
+                        <Route exact path="/" component={Kotisivu} />
+                        <Route exact path="/etusivu" component={Kotisivu} />
                         <Route path="/lisaasanonta"             component={SanontalomakeMUI} />
-                        <Route path="/listaasanonnat" render= {(props) => <SanontalistaMUI{...props} sanonnat={san}/>} />
-                        <Route path="/lisaakoko" component=     {KokolomakeMUI} />
+                        <Route path="/listaasanonnat" component={HaeMuistot} />
+                        <Route path="/lisaakoko" component={KokolomakeMUI} />
                         <Route path="/kokotaulukko" component={KokolistaMUI} />
                     </Switch>
                         </Paper>

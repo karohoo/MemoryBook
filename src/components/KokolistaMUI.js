@@ -51,7 +51,7 @@ class LineChartExample extends React.Component {
 
   render() {
     return (
-      <Card item='true' style={{ border: '1px solid black', width: 900, marginTop: 20, backgroundColor:'rgba(245, 230, 83, 0.8)'}}>
+      <Card item='true' style={{ width: '55%', border: '1px solid black', marginTop: 20, marginLeft: 'auto', marginRight: 'auto', backgroundColor:'rgba(245, 230, 83, 0.8)'}}>
         <LineChart data={this.state.data}
           width="800" height="350"/>
       </Card>
