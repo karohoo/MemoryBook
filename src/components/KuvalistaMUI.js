@@ -31,22 +31,23 @@ function KuvalistaMUI(props) {
     const { classes } = props;
       return (
           <div className={classes.root}>
-        <GridList cellHeight={200} spacing={1} className={classes.gridList}>
-          {props.kuvat.map(kuva => (
-            <GridListTile image={url + '/uploads/' + kuva.kuva} cols={kuva.featured ? 2 : 1} rows={kuva.featured ? 2 : 1}>
+            <GridList cellHeight={200} spacing={1} className={classes.gridList}>
+              {props.kuvat.map(kuva => (
+                <GridListTile key={kuva.kuva} cols={kuva.featured ? 2 : 1} rows={kuva.featured ? 2 : 1}>
+                    <img src={url + '/uploads/' + kuva.kuva} alt={kuva.teksti} style={{height: 200}} />
                     <GridListTileBar
-                      title={kuva.teksti}
-                      titlePosition="top"
-                      actionIcon={
+                        title={kuva.teksti}
+                        titlePosition="top"
+                        actionIcon={
                             <IconButton className={classes.icon}>
                               <StarBorderIcon />
                             </IconButton>
-                          }
-                          actionPosition="left"
-                          className={classes.titleBar}/>
-            </GridListTile>
-          ))}
-        </GridList>
+                        }
+                        actionPosition="left"
+                        className={classes.titleBar}/>
+                </GridListTile>
+              ))}
+            </GridList>
         </div>
   );
 

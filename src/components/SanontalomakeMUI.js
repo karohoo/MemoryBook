@@ -5,10 +5,6 @@ import { Create, Clear } from '@material-ui/icons';
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Typography from "@material-ui/core/Typography";
-
-import {MuiPickersUtilsProvider, DatePicker } from 'material-ui-pickers';
-import DateFnsUtils from 'date-fns';
-import fiLocale from 'date-fns/locale/fi';
 import axios from 'axios';
 import {Url} from '../conf';
 

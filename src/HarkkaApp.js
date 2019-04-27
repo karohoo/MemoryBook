@@ -21,7 +21,7 @@ const styles = {
         height: "770px"
     }
 }
-{/*
+/*
 const san = [
     {
         ika: "4 vuotta",
@@ -42,7 +42,7 @@ const san = [
         sanonta: "Meinasi lentää sydän ulos, sitten ei olisi ollut enää rakkautta"
     }
 ];
-*/}
+*/
 const theme = createMuiTheme(
 {
   palette: {
