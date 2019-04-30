@@ -13,9 +13,8 @@ function SanontalistaMUI (props) {
           <CardHeader title= { muisto.paivamaara } 
                     subheader={muisto.tilanne}/>
           <CardContent>
-            <Typography variant='body1'>{ muisto.ika }</Typography>
-            <br/>
             <Typography variant='body1'>{ muisto.sanonta }</Typography>
+            <Typography variant='body1' align='right'>- { muisto.ika }</Typography>
           </CardContent>
        </Card>
         </Grid>

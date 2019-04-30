@@ -109,8 +109,8 @@ app.post('/kuva/add', upload.single('kuva'), function (req, res) {
     if(req.file) {
         kuva = req.file.originalname
     }
-  db.run('INSERT INTO kuva (kuva, teksti, featured) VALUES (?, ?, ?)',
-    [kuva, tap.teksti, tap.featured], function (error, result, fields) {
+  db.run('INSERT INTO kuva (kuva, teksti) VALUES (?, ?)',
+    [kuva, tap.teksti], function (error, result, fields) {
         if (error) throw error;
 
         return res.status(200).json({count: 1});
@@ -135,7 +135,7 @@ app.get('/kuva/delete/:id', function (req, res) {
 app.get('/download/:nimi', function(req, res){
   var file = './uploads/' + req.params.nimi;
   res.download(file);
-})
+});
 
 
 app.get('*', function (req, res) {

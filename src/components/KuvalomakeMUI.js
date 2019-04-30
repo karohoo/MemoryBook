@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import { Create, Clear, Attachment } from '@material-ui/icons';
+import { Add, Clear } from '@material-ui/icons';
+import { CameraImage } from 'mdi-material-ui';
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Typography from "@material-ui/core/Typography";
@@ -16,7 +17,7 @@ const url = Url();
 class KuvalomakeMUI extends Component {
   constructor(props) {
       super(props);
-      this.state = { kuva: null, teksti: "", featured: true};
+      this.state = { kuva: null, teksti: ""};
   }
 
   muuta = (e) => {
@@ -27,7 +28,6 @@ class KuvalomakeMUI extends Component {
     const formData = new FormData();
     formData.append('kuva', this.state.kuva);
     formData.append('teksti', this.state.teksti);
-    formData.append('featured', this.state.featured);
     axios.post(url + '/kuva/add/', formData)
         .then(response => {
             if (response.status === 200) {
@@ -40,7 +40,7 @@ class KuvalomakeMUI extends Component {
   }
 
   tyhjenna = (e) => {
-    this.setState( { kuva: null, teksti: "", featured: true  } );
+    this.setState( { kuva: null, teksti: ""} );
   }
   
   muutaKuva = (e) => {
@@ -62,7 +62,7 @@ class KuvalomakeMUI extends Component {
 
           <InputLabel htmlFor='kuva'>
             Kuva
-            <Button component='span'><Attachment /></Button>
+            <Button component='span'><CameraImage /></Button>
             {kuvanNimi}
           </InputLabel>
          
@@ -71,7 +71,7 @@ class KuvalomakeMUI extends Component {
                className={ classes.field } fullWidth />
                
         <div className={ classes.buttonContainer }>
-            <Button onClick={this.lisaa} variant='contained' color='primary' className={ classes.button }><Create /> Lisää</Button>
+            <Button onClick={this.lisaa} variant='contained' color='primary' className={ classes.button }><Add /> Lisää</Button>
             <Button onClick={this.tyhjenna} className={ classes.button }><Clear /> Tyhjennä</Button>
         </div>
       </form>

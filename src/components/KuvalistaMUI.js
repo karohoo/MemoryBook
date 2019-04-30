@@ -4,8 +4,9 @@ import { withStyles } from '@material-ui/core/styles';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
-import StarBorderIcon from '@material-ui/icons/StarBorder';
+import { HeartOutline } from 'mdi-material-ui';
 import IconButton from '@material-ui/core/IconButton';
+
 import {Url} from '../conf';
 
 const url = Url();
@@ -23,24 +24,28 @@ const styles = theme => ({
     transform: 'translate(0)'
   },
   titleBar: {
-    background:'rgba(245, 230, 83, 0.8)'
-  }
+    background:'linear-gradient(to top, rgba(245, 230, 83, 0.8) 0%, ' +
+      'rgba(245, 230, 83, 0.3) 70%, rgba(245, 230, 83, 0) 100%)',
+  },
+icon: {
+    color: 'rgba(255, 255, 255, 0.54)',
+  },
 });
 
 function KuvalistaMUI(props) {
     const { classes } = props;
       return (
           <div className={classes.root}>
-            <GridList cellHeight={200} spacing={1} className={classes.gridList}>
+            <GridList cellHeight={400} className={classes.gridList} cols={2}>
               {props.kuvat.map(kuva => (
-                <GridListTile key={kuva.kuva} cols={kuva.featured ? 2 : 1} rows={kuva.featured ? 2 : 1}>
-                    <img src={url + '/uploads/' + kuva.kuva} alt={kuva.teksti} style={{height: 200}} />
+                <GridListTile image={url + '/download/' + kuva.kuva} cols={1}>
+                    <img src={url + '/download/' + kuva.kuva} alt={kuva.teksti} style={{ height:'400'}} />
                     <GridListTileBar
                         title={kuva.teksti}
-                        titlePosition="top"
+                        titlePosition="bottom"
                         actionIcon={
                             <IconButton className={classes.icon}>
-                              <StarBorderIcon />
+                              <HeartOutline />
                             </IconButton>
                         }
                         actionPosition="left"

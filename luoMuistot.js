@@ -12,22 +12,13 @@ db.serialize(function() {
 		console.log("Taulu tehtiin");
 	});
     
-    let sql2 = "CREATE TABLE kuva (" + "id integer PRIMARY KEY NOT NULL, " + "kuva text, " + "teksti text NOT NULL, " + "featured text NOT NULL)";
+    let sql2 = "CREATE TABLE kuva (" + "id integer PRIMARY KEY NOT NULL, " + "kuva text, " + "teksti text NOT NULL)";
 
 	db.run(sql2, function(err) {
 		if (err) {
 		  return console.log(err.message);
 		}
 		console.log("Taulu tehtiin");
-	});
-    
-    sql2 = "INSERT INTO `kuva` (`id`, `kuva`, `teksti`, `featured`) "+
-	" VALUES (1, 'null', 'Menossa nukkumaan', 'true')";
-	db.run(sql2, function(err) {
-		if (err) {
-		  return console.log(err.message);
-		}
-		console.log("Rivi lisättiin");
 	});
 
 	sql = "INSERT INTO `muisto` (`id`, `ika`, `paivamaara`, `tilanne`, `sanonta`) "+

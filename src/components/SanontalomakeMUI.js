@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import { Create, Clear } from '@material-ui/icons';
+import { Add, Clear } from '@material-ui/icons';
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Typography from "@material-ui/core/Typography";
@@ -72,7 +72,7 @@ class SanontalomakeMUI extends Component {
               onChange={ this.muuta } margin='normal' multiline rows="3" required
               className={ classes.field } fullWidth />
         <div className={ classes.buttonContainer }>
-            <Button onClick={this.lisaa} variant='contained' color='primary' className={ classes.button }><Create /> Lisää</Button>
+            <Button onClick={this.lisaa} variant='contained' color='primary' className={ classes.button }><Add /> Lisää</Button>
             <Button onClick={this.tyhjenna} className={ classes.button }><Clear /> Tyhjennä</Button>
         </div>
       </form>
