@@ -9,7 +9,7 @@ import KokolistaMUI from "./components/KokolistaMUI";
 import KokolomakeMUI from "./components/KokolomakeMUI";
 import SanontalomakeMUI from "./components/SanontalomakeMUI";
 import HaeMuistot from "./components/HaeMuistot";
-import Kotisivu from "./components/Kotisivu";
+import Kotisivunen from "./components/Kotisivunen";
 import HaeKuvat from "./components/HaeKuvat";
 import KuvalomakeMUI from "./components/KuvalomakeMUI";
 import imgUrl from "./max.jpg";
@@ -71,8 +71,8 @@ class HarkkaApp extends Component {
                 }
                     <MenuMUI/>
                     <Switch>
-                        <Route exact path="/" component={Kotisivu} />
-                        <Route exact path="/etusivu" component={Kotisivu} />
+                        <Route exact path="/" component={Kotisivunen} />
+                        <Route exact path="/etusivu" component={Kotisivunen} />
                         <Route path="/lisaasanonta"             component={SanontalomakeMUI} />
                         <Route path="/listaasanonnat" component={HaeMuistot} />
                         <Route path="/listaakuvat" component={HaeKuvat} />

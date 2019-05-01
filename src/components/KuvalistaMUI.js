@@ -4,7 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
-import { HeartOutline } from 'mdi-material-ui';
+import { DeathlyHallows } from 'mdi-material-ui';
 import IconButton from '@material-ui/core/IconButton';
 
 import {Url} from '../conf';
@@ -16,12 +16,13 @@ const styles = theme => ({
     display: 'flex',
     flexWrap: 'wrap',
     justifyContent: 'space-around',
-    overflow: 'hidden'
+    overflow: 'hidden',
   },
   gridList: {
     width: 700,
     height: 700,
-    transform: 'translate(0)'
+    transform: 'translate(0)',
+    background: 'rgba(245, 230, 83, 0.8)'
   },
   titleBar: {
     background:'linear-gradient(to top, rgba(245, 230, 83, 0.8) 0%, ' +
@@ -45,7 +46,7 @@ function KuvalistaMUI(props) {
                         titlePosition="bottom"
                         actionIcon={
                             <IconButton className={classes.icon}>
-                              <HeartOutline />
+                              <DeathlyHallows />
                             </IconButton>
                         }
                         actionPosition="left"
